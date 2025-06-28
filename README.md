@@ -40,3 +40,32 @@ It supports JWT authentication, custom user roles (employer/job seeker), secure 
    ```bash
    git clone https://github.com/yourusername/job-board-api.git
    cd job-board-api
+
+2. Create and activate a virtual environment 
+   ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Linux/macOS
+    venv\Scripts\activate     # On Windows
+
+3. Install dependencies 
+   ```bash
+   pip install -r requirements.txt
+
+4. Create a .env file in the root directory and configure your environment variables (use .env.example as reference):  
+   ```bash
+    SECRET_KEY=your_django_secret_key_here
+    DEBUG=True
+    DB_ENGINE=django.db.backends.postgresql
+    DB_NAME=your_db_name
+    DB_USERNAME=your_db_user
+    DB_PASSWORD=your_db_password
+    DB_HOST=localhost
+    DB_PORT=5432
+
+5. Apply migrations
+   ```bash
+   python manage.py migrate
+
+6. Run the development server
+   ```bash
+   python manage.py runserver
