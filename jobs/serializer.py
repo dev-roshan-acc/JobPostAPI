@@ -6,16 +6,18 @@ from django.db import transaction
 
 
 class JobSerializer(serializers.ModelSerializer):
-    location = serializers.SerializerMethodField()
+    location = LocationSerializer()
+    location_str = serializers.SerializerMethodField()
     
-    def get_location(self,obj):
-        return f"{obj.location.city},{obj.location.state},{obj.location.postcode},{obj.location.country}"
+    
+    def get_location_str(self,obj):
+        # join the location string
+        return f"{obj.location.city}, {obj.location.state}, {obj.location.postcode}, {obj.location.country}"
     employer_username = serializers.CharField(source='employer.username', read_only=True)
 
     class Meta:
         model = Job
-        fields = ['id', 'title', 'description', 'salary', 'location', 'employer_username', 'created_at', 'is_active']
-        read_only_fields = ["employer_id", "created_at"]
+        fields = ['id', 'title', 'description', 'salary', 'location','location_str', 'employer_username', 'created_at', 'is_active']
 
     def create(self, validated_data):
         location_data = validated_data.pop("location")
