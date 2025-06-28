@@ -22,3 +22,14 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["username", "email", "password", "is_employer", "is_job_seeker"]
+    
+    def create(self,validated_data):
+        user = User(
+        username=validated_data['username'],
+        email=validated_data['email'],
+        is_employer=validated_data.get('is_employer', False),
+        is_job_seeker=validated_data.get('is_job_seeker', True),
+        )
+        user.set_password(validated_data['password'])  # hashes password
+        user.save()
+        return user
