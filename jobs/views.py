@@ -13,6 +13,6 @@ class JobListCreateView(generics.ListCreateAPIView):
     
     def perform_create(self, serializer):
         # Automatically assign the logged-in user as the employer
-        serializer.save(employer_id = self.request.user)
+        serializer.save(employer_id = self.request.user.id)
     
     
