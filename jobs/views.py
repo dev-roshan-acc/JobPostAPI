@@ -15,4 +15,13 @@ class JobListCreateView(generics.ListCreateAPIView):
         # Automatically assign the logged-in user as the employer
         serializer.save(employer_id = self.request.user.id)
     
+class JobDetailView(generics.RetrieveAPIView):
+    serializer_class = JobSerializer
+    permission_classes = [permissions.AllowAny]  # Open access to everyone
+    
+    def get_object(self):
+        id = self.kwargs['job_id']
+        return Job.objects.get(id=id)
+        
+    
     
