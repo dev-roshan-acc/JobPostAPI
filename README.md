@@ -77,3 +77,6 @@ It supports JWT authentication, custom user roles (employer/job seeker), secure 
 6. Run the development server
    ```bash
    python manage.py runserver
+
+## Postman Collection
+   To make testing and exploring the Job Board API easier, I have included a Postman collection in the project repository under the postman/ folder.
