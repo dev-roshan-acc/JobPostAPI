@@ -1,0 +1,439 @@
+{
+	"info": {
+		"_postman_id": "c986d90f-aec7-4a14-8209-c48ff5bd019f",
+		"name": "Job Board Apis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40743219",
+		"_collection_link": "https://django-5359.postman.co/workspace/Job-Board-Application~f6111880-4f0e-4ef5-9b09-88614b8de1b5/collection/40743219-c986d90f-aec7-4a14-8209-c48ff5bd019f?action=share&source=collection_link&creator=40743219"
+	},
+	"item": [
+		{
+			"name": "Applicant",
+			"item": [
+				{
+					"name": "application",
+					"item": [
+						{
+							"name": "apply_job",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "resume",
+											"type": "file",
+											"src": "/Users/roshanshrestha/Documents/menus.pdf"
+										},
+										{
+											"key": "cover_letter",
+											"value": "I'm very interested in this position.",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_uri}}/application/apply/9/",
+									"host": [
+										"{{base_uri}}"
+									],
+									"path": [
+										"application",
+										"apply",
+										"9",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "application_list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_uri}}/application/my-application/",
+									"host": [
+										"{{base_uri}}"
+									],
+									"path": [
+										"application",
+										"my-application",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "withdraw",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_uri}}/application/17/withdraw/",
+									"host": [
+										"{{base_uri}}"
+									],
+									"path": [
+										"application",
+										"17",
+										"withdraw",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjI3NTc1LCJpYXQiOjE3NTE1NDExNzUsImp0aSI6IjhlNWQ4NTNkZTJjMDQxYTZiZjRhZDMxNWY3NzRmZWZjIiwidXNlcl9pZCI6Nn0.09eSTp6wfv1r2M0BogWggp_FF7EBriEiZQhGsZGQBZY",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjY1MjYwLCJpYXQiOjE3NTE1Nzg4NjAsImp0aSI6IjkyZTUwOTdhMmFmODQ5YzNiZmQ0M2I1NGRjYzBmZWU2IiwidXNlcl9pZCI6Nn0.VNte9hvQhLp6JABJeD-TpYK3pu33bBAF7kqtC0yx6t8",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Core",
+			"item": [
+				{
+					"name": "jobs",
+					"item": [
+						{
+							"name": "view_list",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_uri}}/jobs/?ordering=created_at",
+									"host": [
+										"{{base_uri}}"
+									],
+									"path": [
+										"jobs",
+										""
+									],
+									"query": [
+										{
+											"key": "ordering",
+											"value": "created_at"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "details",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_uri}}/jobs/2/",
+									"host": [
+										"{{base_uri}}"
+									],
+									"path": [
+										"jobs",
+										"2",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "noauth"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Employer",
+			"item": [
+				{
+					"name": "Job",
+					"item": [
+						{
+							"name": "create job",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"Software Engineer\",\n  \"description\": \"Job description here\",\n  \"salary\": 50000,\n  \"location\": {\n    \"street\": \"78 Anson Road, Flat 6\",\n    \"city\": \"London\",\n    \"state\": \"Greater London\",\n    \"postcode\": \"NW2 6AE\",\n    \"country\": \"United Kingdom\"\n  }\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_uri}}/jobs/create/",
+									"host": [
+										"{{base_uri}}"
+									],
+									"path": [
+										"jobs",
+										"create",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "application",
+					"item": [
+						{
+							"name": "applications",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_uri}}/application/list/",
+									"host": [
+										"{{base_uri}}"
+									],
+									"path": [
+										"application",
+										"list",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjY1MzI3LCJpYXQiOjE3NTE1Nzg5MjcsImp0aSI6IjFkZDhkMDgwNDk1NTQ3ZGY4NDI2N2E0NDc4MDc2NTFiIiwidXNlcl9pZCI6N30.sQG6QsuyrtYmbv-8tixacdc6XlQscjdG9cKn--ImvCI",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "accounts",
+					"item": [
+						{
+							"name": "register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\":\"Employer3\",\n    \"last_name\":\"Employer3\",\n    \"username\":\"employer3\",\n    \"password\":\"emp3pass\",\n    \"email\":\"employer3@gmail.com\",\n    \"is_job_seeker\":false,\n    \"is_staff\" :true,\n    \"is_employer\":true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_uri}}/account/register/",
+									"host": [
+										"{{base_uri}}"
+									],
+									"path": [
+										"account",
+										"register",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"applicant1\",\n    \"password\":\"passapp1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_uri}}/account/login/",
+									"host": [
+										"{{base_uri}}"
+									],
+									"path": [
+										"account",
+										"login",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
