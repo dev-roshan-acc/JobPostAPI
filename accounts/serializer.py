@@ -26,9 +26,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self,validated_data):
         user = User(
         username=validated_data['username'],
-        email=validated_data['email'],
-        is_employer=validated_data.get('is_employer', False),
-        is_job_seeker=validated_data.get('is_job_seeker', True),
+        email=validated_data['email']
         )
         user.set_password(validated_data['password'])  # hashes password
         user.save()

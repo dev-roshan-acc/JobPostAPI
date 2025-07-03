@@ -1,15 +1,22 @@
 from django.shortcuts import render
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions,exceptions
 from .models import Job
 from .serializer import JobSerializer
+
 
 # Create your views here.
 
 # List all jobs or create a new job
-class JobListCreateView(generics.ListCreateAPIView):
-    queryset = Job.objects.all()
+class JobListView (generics.ListAPIView):
+    # queryset= Job.objects.all()
     serializer_class = JobSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.AllowAny]
+    
+    def get_queryset(self):
+        return Job.objects.filter(is_active=True)
+class JobListCreateView(generics.CreateAPIView):
+    serializer_class = JobSerializer
+    permission_classes = [permissions.IsAdminUser,permissions.IsAuthenticated]
     
     def perform_create(self, serializer):
         # Automatically assign the logged-in user as the employer
@@ -20,8 +27,11 @@ class JobDetailView(generics.RetrieveAPIView):
     permission_classes = [permissions.AllowAny]  # Open access to everyone
     
     def get_object(self):
-        id = self.kwargs['job_id']
-        return Job.objects.get(id=id)
+        try:
+            job = Job.objects.get(id=self.kwargs['job_id'],is_active=True)
+        except Exception as e:
+            raise exceptions.NotFound('Active job not found with this id')
+        return job
         
     
     
