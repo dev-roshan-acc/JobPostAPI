@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'jobs',
     'locations',
     'application',
+    'core',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -150,6 +151,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'  # Custom user
 
 REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'core.base_views.custom_exception_handler',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),

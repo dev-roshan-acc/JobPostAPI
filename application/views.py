@@ -4,8 +4,8 @@ from jobs.models import Job
 from django.shortcuts import get_object_or_404
 from .models import Application
 from rest_framework.response import Response
-from core.base_views import BaseListAPIView,BaseCreateAPIView
-
+from core.base_views import BaseListAPIView,BaseCreateAPIView,BaseUpdateAPIView
+from core.master_utils import MasterApplicationUtils
 # Create your views here.
 
 
@@ -45,3 +45,26 @@ class ApplicationListView(BaseListAPIView):
         # relationships.
         
         return Application.objects.filter(job__employer=self.request.user)
+    
+class WithdrawApplicationView (BaseUpdateAPIView):
+    serializer_class = ApplicationSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Application.objects.all()
+    lookup_url_kwarg = 'application_id'
+    
+    # def get_queryset(self):
+        # return Application.objects.filter(user=self.request.user,status = 'applied')
+        
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
+    
+    
+    def patch(self, request, *args, **kwargs):
+        application_id =self.kwargs.get(self.lookup_url_kwarg)
+        MasterApplicationUtils.update_application_status(application_id,self.request.user,'withdraw')
+        # application = self.get_object()
+        # application.status = 'withdrawn'
+        # application.save()
+        return super().patch(request, *args, **kwargs)
+        
+        
