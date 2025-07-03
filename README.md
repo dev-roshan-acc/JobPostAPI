@@ -9,6 +9,14 @@ It supports JWT authentication, custom user roles (employer/job seeker), secure 
 
 - Custom user model with role-based access (`is_employer`, `is_job_seeker`)  
 - User registration with email validation and password security  
+- Job seekers can submit applications to jobs by uploading resumes and optionally adding cover letters.
+- Each application tracks its status (e.g., applied, withdrawn, accepted, rejected).
+- Employers can view and manage applications for their posted jobs.
+- Role-based access controls ensure only authorized users (job seekers or employers) can perform actions on applications.
+- Application status updates are securely handled with permission checks.
+- Resume files are securely stored and accessible only to relevant users.
+- Application data integrates with user and job models for full traceability.
+- Error handling is consistent with the rest of the API for smooth client experience.
 - JWT token-based authentication and authorization  
 - CRUD operations for users and jobs (can be extended)  
 - Environment variable management with `python-decouple`  
